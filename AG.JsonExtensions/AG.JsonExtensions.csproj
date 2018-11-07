@@ -35,6 +35,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AG.LiteLoggers, Version=2.4.4.27, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\MyProgs\MyMiniTools\ServerHealthService\WebApp\ServerHealthServiceWebApp\packages\AG.LiteLoggers.2.4.4.27\lib\net35\AG.LiteLoggers.dll</HintPath>
+    </Reference>
+    <Reference Include="AG.Utilities, Version=1.0.0.1, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\MyProgs\MyMiniTools\ServerHealthService\WebApp\ServerHealthServiceWebApp\packages\AG.Utilities.1.0.0.1\lib\net35\AG.Utilities.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\..\..\MyProgs\MyMiniTools\ServerHealthService\packages\Newtonsoft.Json.10.0.3\lib\net35\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -50,16 +56,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Converters\UnixTimeConverter.cs" />
     <Compile Include="WriteablePropertiesContractResolver.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\AG.LiteLoggers\LiteLoggers\AG.LiteLoggers.csproj">
-      <Project>{f46aaf93-2aff-4970-beb0-8dcabcea4278}</Project>
-      <Name>AG.LiteLoggers</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\AG.Utilities\AG.Utilities\AG.Utilities.csproj">
-      <Project>{5c960107-46ce-4f11-9cd4-125fed7773c7}</Project>
-      <Name>AG.Utilities</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
