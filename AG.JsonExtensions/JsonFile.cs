@@ -1,9 +1,6 @@
-﻿using AG.Loggers;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Text;
 using AG.PathStringOperations;
 using AG.Utilities.ErrorHandling;
 
@@ -12,12 +9,12 @@ namespace AG.JsonExtensions
     public class JsonFile<TJsonTypeClass> : ErrorNotifier<Exception, JsonFileErrorArgs>, IFileSaver<TJsonTypeClass>
         where TJsonTypeClass : new()
     {
-        public TJsonTypeClass Load(string fileName)
+        public TJsonTypeClass Load(string fileName, bool dontCreateDefaultSettings = false)
         {
-            return Load(fileName, null);
+            return Load(fileName, null, dontCreateDefaultSettings);
         }
 
-        public TJsonTypeClass Load(string fileName, JsonSerializerSettings jsonSerializerSettings)
+        public TJsonTypeClass Load(string fileName, JsonSerializerSettings jsonSerializerSettings, bool dontCreateDefaultSettings = false)
         {
             TJsonTypeClass deserializedObj = default(TJsonTypeClass);
             tryAgain:
@@ -32,7 +29,7 @@ namespace AG.JsonExtensions
                         deserializedObj = JsonConvert.DeserializeObject<TJsonTypeClass>(fileContent, jsonSerializerSettings);
                     }
                 });
-                if (deserializedObj == null)
+                if (deserializedObj == null && !dontCreateDefaultSettings)
                 {
                     deserializedObj = new TJsonTypeClass();
                 }
@@ -46,7 +43,10 @@ namespace AG.JsonExtensions
                 {
                     goto tryAgain;
                 }
-                deserializedObj = new TJsonTypeClass();
+                if (!dontCreateDefaultSettings)
+                {
+                    deserializedObj = new TJsonTypeClass();
+                }
             }
             return deserializedObj;
         }
